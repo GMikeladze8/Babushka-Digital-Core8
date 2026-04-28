@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BABUSHKA CORE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --main: #00FF41; --bg: #000; }
+        .mode-light { --main: #ff0055; --bg: #fff; }
+        body { background-color: var(--bg); color: var(--main); font-family: 'Arial Black', sans-serif; transition: 0.1s; }
+        .card { border: 2px solid var(--main); transition: 0.2s; }
+        .card:hover { background: var(--main); color: var(--bg); }
+        .bg-babushka { background-image: url('image_eb1504.jpg'); background-size: cover; background-position: center; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <div id="gate" class="h-screen flex flex-col items-center justify-center bg-babushka relative">
+        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="relative z-10 text-center">
+            <h1 class="text-7xl font-black italic mb-10 text-white">BABUSHKA<span class="text-[#00FF41]">.</span></h1>
+            <div class="flex gap-4 justify-center">
+                <button onclick="start('fr')" class="border-4 border-white px-8 py-3 text-white font-bold hover:bg-white hover:text-black">FR</button>
+                <button onclick="start('en')" class="border-4 border-white px-8 py-3 text-white font-bold hover:bg-white hover:text-black">EN</button>
+                <button onclick="start('ru')" class="border-4 border-white px-8 py-3 text-white font-bold hover:bg-white hover:text-black">RU</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="app" class="hidden min-h-screen p-6 flex flex-col items-center justify-center">
+        <button onclick="document.body.classList.toggle('mode-light')" class="fixed top-6 right-6 border-4 border-current p-4 font-black">ZAP_COLOR</button>
+        
+        <div class="w-full max-w-5xl border-[6px] border-current p-8">
+            <h2 id="hero" class="text-3xl md:text-5xl font-black uppercase italic mb-10 leading-tight"></h2>
+            <div id="grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            <div class="mt-10 pt-6 border-t-2 border-current font-bold italic">
+                CONTACT: +33 7 58 78 97 82 // contact@babushkahouse.fr
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const content = {
+            fr: {
+                hero: "Nous transformons votre espace vide en un bureau opérationnel.",
+                list: ["CRM Système", "Google Workspace", "Lead Generation", "Site Web", "Branding", "IA Automation"]
+            },
+            en: {
+                hero: "We transform your empty space into an operational office.",
+                list: ["CRM System", "Google Workspace", "Lead Generation", "Web Design", "Branding", "AI Automation"]
+            },
+            ru: {
+                hero: "Мы превращаем пустое пространство в готовый офис.",
+                list: ["CRM Системы", "Google Workspace", "Лидогенерация", "Веб-сайты", "Брендинг", "ИИ Автоматизация"]
+            }
+        };
+
+        function start(lang) {
+            document.getElementById('gate').classList.add('hidden');
+            document.getElementById('app').classList.remove('hidden');
+            const data = content[lang];
+            document.getElementById('hero').innerText = data.hero;
+            document.getElementById('grid').innerHTML = data.list.map(i => `
+                <div class="card p-6 uppercase font-black text-sm">${i}</div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
