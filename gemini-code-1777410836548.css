@@ -1,0 +1,79 @@
+/* ძირითადი ფერები - Matrix Green */
+:root {
+    --main: #00FF41;
+    --bg: #000000;
+}
+
+/* Light Mode - რადიკალური Neon Pink */
+.mode-light {
+    --main: #ff0055;
+    --bg: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--main);
+    font-family: 'Arial Black', sans-serif;
+    transition: background 0.1s, color 0.1s;
+    min-height: 100vh;
+}
+
+/* ენების ასარჩევი ფონის სურათით */
+.bg-babushka {
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('image_eb1504.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* სერვისების ბარათები */
+.card {
+    border: 3px solid var(--main);
+    padding: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.card:hover {
+    background-color: var(--main);
+    color: var(--bg);
+    transform: skewX(-5deg);
+}
+
+/* მკვეთრი ღილაკები */
+.lang-btn {
+    border: 3px solid white;
+    color: white;
+    padding: 1rem 2.5rem;
+    font-weight: 900;
+    transition: 0.3s;
+}
+
+.lang-btn:hover {
+    background: white;
+    color: black;
+    transform: scale(1.1);
+}
+
+.zap-btn {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    border: 4px solid var(--main);
+    padding: 1rem;
+    font-weight: 900;
+    z-index: 100;
+}
+
+.zap-btn:hover {
+    filter: invert(1);
+}
+
+.hidden { display: none; }
