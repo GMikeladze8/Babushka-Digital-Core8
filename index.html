@@ -8,62 +8,59 @@
     <style>
         :root { --main: #00FF41; --bg: #000; }
         .mode-light { --main: #ff0055; --bg: #fff; }
-        body { background-color: var(--bg); color: var(--main); font-family: 'Arial Black', sans-serif; transition: 0.1s; }
-        .card { border: 2px solid var(--main); transition: 0.2s; }
-        .card:hover { background: var(--main); color: var(--bg); }
-        .bg-babushka { background-image: url('image_eb1504.jpg'); background-size: cover; background-position: center; }
+        body { background-color: var(--bg); color: var(--main); font-family: 'Arial Black', sans-serif; transition: 0.2s; min-height: 100vh; }
+        .card { border: 4px solid var(--main); padding: 20px; text-transform: uppercase; font-weight: 900; transition: 0.2s; cursor: pointer; }
+        .card:hover { background: var(--main); color: var(--bg); transform: skewX(-5deg); }
+        .hidden { display: none; }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body id="b">
 
-    <div id="gate" class="h-screen flex flex-col items-center justify-center bg-babushka relative">
-        <div class="absolute inset-0 bg-black/60"></div>
-        <div class="relative z-10 text-center">
-            <h1 class="text-7xl font-black italic mb-10 text-white">BABUSHKA<span class="text-[#00FF41]">.</span></h1>
-            <div class="flex gap-4 justify-center">
-                <button onclick="start('fr')" class="border-4 border-white px-8 py-3 text-white font-bold hover:bg-white hover:text-black">FR</button>
-                <button onclick="start('en')" class="border-4 border-white px-8 py-3 text-white font-bold hover:bg-white hover:text-black">EN</button>
-                <button onclick="start('ru')" class="border-4 border-white px-8 py-3 text-white font-bold hover:bg-white hover:text-black">RU</button>
-            </div>
+    <div id="gate" class="h-screen flex flex-col items-center justify-center space-y-12">
+        <h1 class="text-7xl md:text-9xl font-black italic tracking-tighter uppercase">Babushka<span class="text-white">.</span></h1>
+        <div class="flex gap-6 flex-wrap justify-center">
+            <button onclick="s('fr')" class="border-4 border-current px-12 py-5 text-xl font-black hover:invert transition">FR</button>
+            <button onclick="s('en')" class="border-4 border-current px-12 py-5 text-xl font-black hover:invert transition">EN</button>
+            <button onclick="s('ru')" class="border-4 border-current px-12 py-5 text-xl font-black hover:invert transition">RU</button>
+            <button onclick="s('ar')" class="border-4 border-current px-12 py-5 text-xl font-black hover:invert transition">AR</button>
         </div>
     </div>
 
-    <div id="app" class="hidden min-h-screen p-6 flex flex-col items-center justify-center">
-        <button onclick="document.body.classList.toggle('mode-light')" class="fixed top-6 right-6 border-4 border-current p-4 font-black">ZAP_COLOR</button>
+    <div id="app" class="hidden p-6 md:p-20 max-w-7xl mx-auto">
+        <button onclick="document.getElementById('b').classList.toggle('mode-light')" class="fixed top-8 right-8 border-4 border-current p-4 font-black hover:invert z-50 transition">ZAP</button>
         
-        <div class="w-full max-w-5xl border-[6px] border-current p-8">
-            <h2 id="hero" class="text-3xl md:text-5xl font-black uppercase italic mb-10 leading-tight"></h2>
-            <div id="grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-            <div class="mt-10 pt-6 border-t-2 border-current font-bold italic">
-                CONTACT: +33 7 58 78 97 82 // contact@babushkahouse.fr
-            </div>
+        <div class="border-[10px] border-current p-10">
+            <h2 id="h" class="text-4xl md:text-6xl font-black uppercase italic mb-16 leading-none tracking-tighter"></h2>
+            
+            <div id="g" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+
+            <footer class="mt-20 pt-10 border-t-8 border-current flex flex-col md:flex-row justify-between items-end gap-10">
+                <div class="font-black italic">
+                    <p class="text-4xl tracking-tighter">+33 7 58 78 97 82</p>
+                    <p class="text-xl opacity-70">contact@babushkahouse.fr</p>
+                </div>
+                <div class="flex gap-10 font-black">
+                    <a href="https://wa.me/33758789782" class="text-2xl border-b-8 border-current uppercase">WhatsApp Direct</a>
+                </div>
+            </footer>
         </div>
     </div>
 
     <script>
-        const content = {
-            fr: {
-                hero: "Nous transformons votre espace vide en un bureau opérationnel.",
-                list: ["CRM Système", "Google Workspace", "Lead Generation", "Site Web", "Branding", "IA Automation"]
-            },
-            en: {
-                hero: "We transform your empty space into an operational office.",
-                list: ["CRM System", "Google Workspace", "Lead Generation", "Web Design", "Branding", "AI Automation"]
-            },
-            ru: {
-                hero: "Мы превращаем пустое пространство в готовый офис.",
-                list: ["CRM Системы", "Google Workspace", "Лидогенерация", "Веб-сайты", "Брендинг", "ИИ Автоматизация"]
-            }
+        const d = {
+            fr: { h: "Transformation totale de votre bureau. Physique et Digital.", l: ["CRM", "Google Workspace", "Leads", "Web Dev", "Branding", "IA Automation", "Analytics", "Marketing"] },
+            en: { h: "Total office transformation. Physical and Digital.", l: ["CRM", "Google Workspace", "Leads", "Web Dev", "Branding", "AI Automation", "Analytics", "Marketing"] },
+            ru: { h: "Полная трансформация офиса. Физика и Диджитал.", l: ["CRM", "Google Workspace", "Лиды", "Сайты", "Брендинг", "ИИ Боты", "Аналитика", "Маркетинг"] },
+            ar: { h: "التحول الكامل لمكتبك. مادي ورقمي.", l: ["نظام CRM", "Google Workspace", "توليد العملاء", "إنشاء المواقع", "الهوية البصرية", "الأتمتة", "تحليل البيانات", "تسويق"] }
         };
 
-        function start(lang) {
+        function s(lang) {
             document.getElementById('gate').classList.add('hidden');
-            document.getElementById('app').classList.remove('hidden');
-            const data = content[lang];
-            document.getElementById('hero').innerText = data.hero;
-            document.getElementById('grid').innerHTML = data.list.map(i => `
-                <div class="card p-6 uppercase font-black text-sm">${i}</div>
-            `).join('');
+            const app = document.getElementById('app');
+            app.classList.remove('hidden');
+            document.getElementById('h').innerText = d[lang].h;
+            document.getElementById('g').innerHTML = d[lang].l.map(x => `<div class="card">${x}</div>`).join('');
+            document.body.style.direction = (lang === 'ar') ? 'rtl' : 'ltr';
         }
     </script>
 </body>
